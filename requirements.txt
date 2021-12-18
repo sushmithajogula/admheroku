@@ -21,9 +21,6 @@ squarify
 absl-py==0.12.0
 alabaster==0.7.12
 altair==4.1.0
-anaconda-client==1.7.2
-anaconda-navigator==1.9.12
-anaconda-project==0.8.3
 annoy==1.17.0
 ansiwrap==0.8.4
 appdirs==1.4.4
