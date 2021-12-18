@@ -351,7 +351,7 @@ elif add_selectbox == 'Exploratory Data Analysis':
     st.write("-------------------------------------------------------------------------------------------------")
     
     def get_orders_final():
-        return pd.read_csv('https://raw.githubusercontent.com/shreyavivekbhosale/AlgorithmicDigitalMarketing/main/Final_Project/0.%20Dataset/cleaned_orders_dataset.csv?token=AG5KNU2IOV3CM7OYWX6PRJDBXWC6M')
+        return pd.read_csv('cleaned_orders_dataset.csv')
 
 #1. Top Product Categories      
     orders_final_df=  get_orders_final()
