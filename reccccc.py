@@ -141,7 +141,7 @@ def Recommendations_Cust2Vec(cust_id):
     prev_orders = pd.read_csv('https://raw.githubusercontent.com/shreyavivekbhosale/AlgorithmicDigitalMarketing/main/Final_Project/6.%20Recommendation_System/rec_dataset.csv?token=AG5KNU2CA3KGJ2PV2HOFM4TBXWB34')
     prev_orders = prev_orders[prev_orders['Customer Segment'] == 'Loyal Customers']
     prev_orders_customers= prev_orders.customer_id.unique()
-    prev_orders_customers = prev_orders_customers[:50]
+    prev_orders_customers = prev_orders_customers[:100]
     prev_orders_details = prev_orders[prev_orders.customer_id.isin(prev_orders_customers)].copy()
     
     # Create basic user features: relative purchase frequences in each depertment/aisle
@@ -255,7 +255,7 @@ def Recommendation_ALS(cust_id):
     store_df = store_df[features]
     store_df = store_df.rename(columns={'Review Score': 'Review_Score'})
     store_df = store_df.drop_duplicates()
-    store_df = store_df[:50]
+    store_df = store_df[:5000]
     product_features_df = store_df.reset_index().pivot_table(
     index='customer_id',
     columns='product_id',
@@ -288,7 +288,7 @@ def Recommendation_ALS(cust_id):
     recommend.remove(Product_id) 
 
     #Getting Product names from prediction 
-    predictions = pd.DataFrame(recommend[:20])
+    predictions = pd.DataFrame(recommend[:10])
     predictions.columns = ['Product_ID']
     predictions['Product_Name'] = predictions.Product_ID.apply(lambda x : store_df[store_df.product_id == x]['product_name'].unique()[0])
     #predictions[:20]
@@ -317,18 +317,18 @@ def Recommendation_ALS(cust_id):
     
         corr_product_ID = corr_matrix[product_id_index]
     
-        recommend = list(X.index[corr_product_ID > 0.70])
+        recommend = list(X.index[corr_product_ID > 0.60])
         recommend.remove(product_id) 
 
-        prod_predictions = pd.DataFrame(recommend[:20])
+        prod_predictions = pd.DataFrame(recommend[:10])
         prod_predictions.columns = ['Product_ID']
 
         prod_predictions['Product Name'] = prod_predictions.Product_ID.apply(lambda x : store_df[store_df.product_id == x]['product_name'].unique()[0])
-        Recommendations = predictions[:10]
+        Recommendations = predictions[:3]
         return Recommendations
 
     prod_recommendations = product_recommendations_ALS(cust_id)
-    prod_recommendations[:10]
+    prod_recommendations[:5]
  
 
 st.markdown(html, unsafe_allow_html=True)
@@ -519,7 +519,7 @@ elif add_selectbox == 'Market Analysis':
     </style>""", unsafe_allow_html=True)   
     
     st.write("                              ")
-    powerbi = '<a target=\"_blank\" style=\"text-decoration: none; color: white; padding: 10px; background-color: darkblue;\" href=\"https://app.powerbi.com/groups/me/dashboards/dc7e46b9-a78e-4d8e-b594-ed107c7f01a7\">PowerBI</a><br><br>'
+    powerbi = '<a target=\"_blank\" style=\"text-decoration: none; color: white; padding: 10px; background-color: darkblue;\" href=\"https://app.powerbi.com/groups/me/reports/a6149b35-77d2-44e3-ab98-a77fa69610d7/ReportSection0f10748131005402b166\">PowerBI</a><br><br>'
     st.markdown(powerbi, unsafe_allow_html=True)
     
     tableau = '<a target=\"_blank\" style=\"text-decoration: none; color: white; padding: 10px; background-color: darkblue;\" href=\"https://public.tableau.com/app/profile/sushmitha.jogula/viz/ADM_Project_Tableau/GlobalSuperstoreMarketingDashboard\">Tableau</a>'
