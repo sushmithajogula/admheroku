@@ -519,6 +519,11 @@ elif add_selectbox == 'Market Analysis':
     </style>""", unsafe_allow_html=True)   
     
     st.write("                              ")
+    powerbi = '<a target=\"_blank\" style=\"color: white; padding: 10px; background-color: darkblue;\" href=\"https://app.powerbi.com/groups/me/dashboards/dc7e46b9-a78e-4d8e-b594-ed107c7f01a7\">PowerBI</a><br><br>'
+    st.markdown(powerbi, unsafe_allow_html=True)
+    
+    tableau = '<a target=\"_blank\" style=\"color: white; padding: 10px; background-color: darkblue;\" href=\"https://public.tableau.com/app/profile/sushmitha.jogula/viz/ADM_Project_Tableau/GlobalSuperstoreMarketingDashboard\">Tableau</a>'
+    st.markdown(powerbi, unsafe_allow_html=True)
     
     if st.button("GET POWERBI DASHBOARDS"):
         webbrowser.open_new_tab(link)
