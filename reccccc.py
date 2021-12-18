@@ -525,13 +525,13 @@ elif add_selectbox == 'Market Analysis':
     tableau = '<a target=\"_blank\" style=\"text-decoration: none; color: white; padding: 10px; background-color: darkblue;\" href=\"https://public.tableau.com/app/profile/sushmitha.jogula/viz/ADM_Project_Tableau/GlobalSuperstoreMarketingDashboard\">Tableau</a>'
     st.markdown(tableau, unsafe_allow_html=True)
     
-    if st.button("GET POWERBI DASHBOARDS"):
-        webbrowser.open_new_tab(link)
+#     if st.button("GET POWERBI DASHBOARDS"):
+#         webbrowser.open_new_tab(link)
     	
-    st.write("                                       ")
+#     st.write("                                       ")
     
-    if st.button("GET TABLEAU DASHBOARDS"):
-        webbrowser.open_new_tab(link2)
+#     if st.button("GET TABLEAU DASHBOARDS"):
+#         webbrowser.open_new_tab(link2)
     
  
 
@@ -623,8 +623,11 @@ elif add_selectbox == 'Churn Analysis':
     
     st.write("                              ")
     link="https://public.tableau.com/app/profile/sushmitha.jogula/viz/Monthly_Churn_Rate/MonthlyChurnRate?publish=yes"
-    if st.button("GET TABLEAU DASHBOARD"):
-        webbrowser.open_new_tab(link)
+    
+    tableau = '<a target=\"_blank\" style=\"text-decoration: none; color: white; padding: 10px; background-color: darkblue;\" href=\"https://public.tableau.com/app/profile/sushmitha.jogula/viz/Monthly_Churn_Rate/MonthlyChurnRate">Tableau</a>'
+    st.markdown(tableau, unsafe_allow_html=True)
+#     if st.button("GET TABLEAU DASHBOARD"):
+#         webbrowser.open_new_tab(link)
     
     purchase_freq = '<p style="font-family:Sans serif; color:#b30000; font-size: 25px;">Purchase Frequency : 1.1805510432932644</p>'
     st.markdown(purchase_freq, unsafe_allow_html=True)  
