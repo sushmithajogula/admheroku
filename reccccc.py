@@ -141,7 +141,7 @@ def Recommendations_Cust2Vec(cust_id):
     prev_orders = pd.read_csv('https://raw.githubusercontent.com/shreyavivekbhosale/AlgorithmicDigitalMarketing/main/Final_Project/6.%20Recommendation_System/rec_dataset.csv?token=AG5KNU2CA3KGJ2PV2HOFM4TBXWB34')
     prev_orders = prev_orders[prev_orders['Customer Segment'] == 'Loyal Customers']
     prev_orders_customers= prev_orders.customer_id.unique()
-    prev_orders_customers = prev_orders_customers[:5000]
+    prev_orders_customers = prev_orders_customers[:50]
     prev_orders_details = prev_orders[prev_orders.customer_id.isin(prev_orders_customers)].copy()
     
     # Create basic user features: relative purchase frequences in each depertment/aisle
@@ -255,7 +255,7 @@ def Recommendation_ALS(cust_id):
     store_df = store_df[features]
     store_df = store_df.rename(columns={'Review Score': 'Review_Score'})
     store_df = store_df.drop_duplicates()
-    store_df = store_df[:5000]
+    store_df = store_df[:50]
     product_features_df = store_df.reset_index().pivot_table(
     index='customer_id',
     columns='product_id',
