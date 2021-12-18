@@ -241,8 +241,8 @@ def Recommendations_Cust2Vec(cust_id):
         prev_orders_details_clust[prev_orders_details_clust['latent_cluster']==cluster_id][['customer_id', 'product_name']].groupby("customer_id").apply(lambda order: ' >'.join(order['product_name'])).reset_index().head(10)
     
     prev_orders_details_all = prev_orders_details_clust
-    
-    orders_details = pd.read_csv('https://raw.githubusercontent.com/shreyavivekbhosale/AlgorithmicDigitalMarketing/main/Final_Project/7.%20Streamlit_Application/Recomm_Customer2vec.csv?token=AG5KNUYDO7IXVQOD7IXOSBDBXWCH4')
+    prev_orders_details_all.to_csv('Recomm_Customer2vec.csv', index=False)
+    orders_details = pd.read_csv('Recomm_Customer2vec.csv')
     recommendations_c2v = orders_details[['customer_id', 'product_name', 'Product Category', 'Review Score']]
     recommendations_c2v = recommendations_c2v[recommendations_c2v.customer_id == cust_id]
     recommendations_c2v
@@ -250,7 +250,7 @@ def Recommendations_Cust2Vec(cust_id):
 
 def Recommendation_ALS(cust_id):
 
-    store_df=pd.read_csv('https://raw.githubusercontent.com/shreyavivekbhosale/AlgorithmicDigitalMarketing/main/Final_Project/6.%20Recommendation_System/rec_dataset.csv?token=AG5KNU2CA3KGJ2PV2HOFM4TBXWB34')
+    store_df=pd.read_csv('rec_dataset.csv')
     features = ['customer_id', 'product_name', 'product_id', 'Review Score']
     store_df = store_df[features]
     store_df = store_df.rename(columns={'Review Score': 'Review_Score'})
@@ -292,14 +292,14 @@ def Recommendation_ALS(cust_id):
     predictions.columns = ['Product_ID']
     predictions['Product_Name'] = predictions.Product_ID.apply(lambda x : store_df[store_df.product_id == x]['product_name'].unique()[0])
     #predictions[:20]
-    store_df.to_csv('https://raw.githubusercontent.com/shreyavivekbhosale/AlgorithmicDigitalMarketing/main/Final_Project/7.%20Streamlit_Application/store_df_ALS.csv?token=AG5KNU4VZKKJSFMY3YBFGBTBXWCOO', index=False)
-    X.to_csv('https://media.githubusercontent.com/media/shreyavivekbhosale/AlgorithmicDigitalMarketing/main/Final_Project/0.%20Dataset/X_ALS.csv?token=AG5KNU4VGI2NXPEVNH64JP3BXWLDE')
+    store_df.to_csv('store_df_ALS.csv', index=False)
+    X.to_csv('X_ALS.csv')
     with open('orrelation_matrix_ALS.txt', 'w') as filehandle:
         json.dump(corr_matrix.tolist(), filehandle)
     
-    store_df = pd.read_csv('https://raw.githubusercontent.com/shreyavivekbhosale/AlgorithmicDigitalMarketing/main/Final_Project/7.%20Streamlit_Application/store_df_ALS.csv?token=AG5KNU4VZKKJSFMY3YBFGBTBXWCOO')
+    store_df = pd.read_csv('store_df_ALS.csv')
     
-    X = pd.read_csv('https://media.githubusercontent.com/media/shreyavivekbhosale/AlgorithmicDigitalMarketing/main/Final_Project/0.%20Dataset/X_ALS.csv?token=AG5KNU4VGI2NXPEVNH64JP3BXWLDE', index_col=0)
+    X = pd.read_csv('X_ALS.csv', index_col=0)
     
     with open('correlation_matrix_ALS.txt') as f:
         corr_matrix = json.load(f)
